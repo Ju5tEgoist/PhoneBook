@@ -8,7 +8,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <!-- Access the bootstrap Css like this,
     Spring boot will handle the resource mapping automcatically -->
@@ -31,7 +32,7 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="login">LogIn</a></li>
