@@ -30,7 +30,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
         <%--<c:url value="/j_spring_security_check" var="loginUrl" />--%>
         <div class="card card-container">
             <img id="profile-img" class="profile-img-card" src="http://www.freeiconspng.com/uploads/profile-icon-9.png" />
-            <p id="profile-name" class="profile-name-card"></p>
+            <p id="profile-FIO" class="profile-FIO-card"></p>
             <form class="form-signin">
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" id="inputLogin" class="form-control" name="j_username" placeholder="Login" required autofocus>
