@@ -25,9 +25,6 @@ public class MainController {
     private UserRepository userRepository;
     @Autowired
     private ContactRepository contactRepository;
-//    @Autowired
-//    private SecurityService securityService;
-//
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationView(Model model) {
@@ -59,7 +56,7 @@ public class MainController {
 //        contactRepository.save(contact);
 
         User withContacts = userRepository.findByLogin(user.getLogin()).get(0);
-        return "userMainPage";
+        return "login";
     }
 
     @RequestMapping(value = "/userMainPage", method = RequestMethod.GET)
