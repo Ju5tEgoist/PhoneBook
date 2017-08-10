@@ -1,9 +1,7 @@
 package com.ju5tegoist.phonebook.model;
 
 import lombok.Data;
-
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,7 +10,7 @@ import java.util.Set;
 @Entity
 @Data
 @Table(name = "user")
-public class User {
+public class UserDB {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
@@ -22,6 +20,6 @@ public class User {
     private String login;
     @Column(name = "password")
     private String password;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private Set<Contact> contacts;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+//    private Set<Contact> contacts;
 }

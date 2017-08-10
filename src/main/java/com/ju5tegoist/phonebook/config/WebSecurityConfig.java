@@ -13,27 +13,50 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    //thanks http://devcolibri.com/3810
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+
+        http.csrf()
+                .disable()
+                // указываем правила запросов
+                // по которым будет определятся доступ к ресурсам и остальным данным
                 .authorizeRequests()
-                .antMatchers("/registration", "/resources/**", "/", "/welcome")
-                .permitAll()
-                .antMatchers("/userMainPage", "/createContact").authenticated()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
+                .antMatchers("/resources/**", "/**").permitAll()
+                .anyRequest().permitAll()
+                .and();
+
+        http.formLogin()
+                // указываем страницу с формой логина
                 .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
+                // указываем action с формы логина
+                .loginProcessingUrl("/spring_security_check")
+                // указываем URL при неудачном логине
+                .failureUrl("/login?error")
+                // Указываем параметры логина и пароля с формы логина
+                .usernameParameter("j_username")
+                .passwordParameter("j_password")
+                // даем доступ к форме логина всем
                 .permitAll();
+
+        http.logout()
+                // разрешаем делать логаут всем
+                .permitAll()
+                // указываем URL логаута
+                .logoutUrl("/logout")
+                // указываем URL при удачном логауте
+                .logoutSuccessUrl("/login?logout")
+                // делаем не валидной текущую сессию
+                .invalidateHttpSession(true);
+
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+                    .withUser("user").password("password").roles("USER");
     }
 }
