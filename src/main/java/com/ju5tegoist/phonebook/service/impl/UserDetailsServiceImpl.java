@@ -25,14 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-           // userDAO.findUserByLogin(s);
-
         // с помощью нашего сервиса UserService получаем User
         User user = userService.getUser(s);
         // указываем роли для этого пользователя
         Set<GrantedAuthority> roles = new HashSet();
         roles.add(new SimpleGrantedAuthority(UserRoleEnum.USER.name()));
-
         // на основании полученныйх даных формируем объект UserDetails
         // который позволит проверить введеный пользователем логин и пароль
         // и уже потом аутентифицировать пользователя

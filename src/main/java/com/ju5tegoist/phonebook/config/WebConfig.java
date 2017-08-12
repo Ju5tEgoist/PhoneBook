@@ -12,7 +12,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * Created by yulia on 12.07.17.
  */
 @Configuration
-//@EnableWebMvc
 @ComponentScan("com.ju5tegoist.phonebook")
 public class WebConfig extends WebMvcConfigurerAdapter {
 

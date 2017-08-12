@@ -11,7 +11,6 @@ import java.util.Set;
  * Created by yulia on 14.07.17.
  */
 @Entity
-//@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
 @Data
 @Table(name = "user")
 public class User {

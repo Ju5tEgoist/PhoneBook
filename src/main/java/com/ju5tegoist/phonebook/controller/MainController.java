@@ -27,8 +27,13 @@ public class MainController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registrationSubmit(@ModelAttribute("userForm") User user, Model model, HttpServletRequest request) {
-        System.out.println(user.getFullName() + "   " + user.getPassword() + " " + user.getLogin());
-
+        //Check if login already exist
+        //by getting list of users with the same login
+        //if this list is exist (size > 0) then redirect to registration page and
+        //ask user to find new unique login
+        if(userRepository.findByLogin(user.getLogin()).size() != 0){
+            return "registration";
+        }
         userRepository.save(user);
         model.addAttribute("message", PropertiesContainer.MESSAGE_AFTER_REGISTRATION);
         model.addAttribute("userName", user.getLogin());
@@ -65,10 +70,5 @@ public class MainController {
     @RequestMapping(value = "/createContact", method = RequestMethod.POST)
     public String createContactPost(){
         return "createContact";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGet(){
-        return "login";
     }
 }
