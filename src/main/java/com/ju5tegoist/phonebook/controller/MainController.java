@@ -1,7 +1,7 @@
 package com.ju5tegoist.phonebook.controller;
 
 import com.ju5tegoist.phonebook.PropertiesContainer;
-import com.ju5tegoist.phonebook.model.UserDB;
+import com.ju5tegoist.phonebook.entity.User;
 import com.ju5tegoist.phonebook.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,17 +21,17 @@ public class MainController {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationView(Model model) {
-        model.addAttribute("userForm", new UserDB());
+        model.addAttribute("userForm", new User());
         return "registration";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationSubmit(@ModelAttribute("userForm") UserDB userDB, Model model, HttpServletRequest request) {
-        System.out.println(userDB.getFullName() + "   " + userDB.getPassword() + " " + userDB.getLogin());
+    public String registrationSubmit(@ModelAttribute("userForm") User user, Model model, HttpServletRequest request) {
+        System.out.println(user.getFullName() + "   " + user.getPassword() + " " + user.getLogin());
 
-        userRepository.save(userDB);
+        userRepository.save(user);
         model.addAttribute("message", PropertiesContainer.MESSAGE_AFTER_REGISTRATION);
-        model.addAttribute("userName", userDB.getLogin());
+        model.addAttribute("userName", user.getLogin());
 
 //        Contact contact = new Contact();
 //        contact.setFirstName("David");
@@ -44,7 +44,7 @@ public class MainController {
 //        contact.setUser(userRepository.findByLogin(user.getLogin()).get(0));
 //        contactRepository.save(contact);
 
-        UserDB withContacts = userRepository.findByLogin(userDB.getLogin()).get(0);
+        User withContacts = userRepository.findByLogin(user.getLogin()).get(0);
         return "login";
     }
 

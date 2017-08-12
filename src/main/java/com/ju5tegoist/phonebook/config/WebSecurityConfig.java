@@ -1,19 +1,35 @@
 package com.ju5tegoist.phonebook.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * Created by yulia on 12.07.17.
  */
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
+@Import(WebConfig.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    // регистрируем нашу реализацию UserDetailsService
+    // а также PasswordEncoder для приведения пароля в формат SHA1
+    @Autowired
+    public void registerGlobalAuthentication(AuthenticationManagerBuilder auth, @Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) throws Exception {
+        auth
+                .userDetailsService(userDetailsService);
+                //.passwordEncoder(getShaPasswordEncoder());
+    }
     //thanks http://devcolibri.com/3810
 
     @Override
@@ -52,11 +68,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true);
 
     }
+//
+//    @Bean
+//    public ShaPasswordEncoder getShaPasswordEncoder(){
+//        return new ShaPasswordEncoder();
+//    }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .inMemoryAuthentication()
-                    .withUser("user").password("password").roles("USER");
-    }
 }

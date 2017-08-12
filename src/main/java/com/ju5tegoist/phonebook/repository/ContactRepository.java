@@ -1,7 +1,7 @@
 //package com.ju5tegoist.phonebook.repository;
 //
-//import com.ju5tegoist.phonebook.model.Contact;
-//import com.ju5tegoist.phonebook.model.UserDB;
+//import com.ju5tegoist.phonebook.entity.Contact;
+//import com.ju5tegoist.phonebook.model.User;
 //import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.stereotype.Repository;
 //

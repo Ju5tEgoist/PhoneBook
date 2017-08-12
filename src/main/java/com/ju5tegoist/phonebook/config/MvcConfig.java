@@ -13,11 +13,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @RequestMapping(method = RequestMethod.GET)
 public class MvcConfig extends WebMvcConfigurerAdapter {
     @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
+    public void addViewControllers(final ViewControllerRegistry registry) {
 //        registry.addViewController("/welcome").setViewName("welcome");
         registry.addViewController("/").setViewName("welcome");
         registry.addViewController("/registration").setViewName("registration");
         registry.addViewController("/login").setViewName("login");
-//        registry.addViewController("/about").setViewName("about");
+        registry.addViewController("/about").setViewName("about");
     }
 }

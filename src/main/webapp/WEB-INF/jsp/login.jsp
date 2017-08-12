@@ -84,7 +84,7 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-6">
-                        <a class="btn btn-primary col-sm-12" href="/registration">Регистрация</a>
+                        <a class="btn btn-primary col-sm-12" href="registration">Регистрация</a>
                     </div>
                     <div class="col-sm-6 rightbutton">
                         <input class="btn btn-primary col-sm-12" type="submit" value="Войти">

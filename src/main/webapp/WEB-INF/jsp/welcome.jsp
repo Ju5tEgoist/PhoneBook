@@ -36,7 +36,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="login">LogIn</a></li>
-                <li><a href="registration">Registration</a></li>
+                <li><a href="logOut">LogOut</a></li>
             </ul>
         </div>
 
