@@ -22,6 +22,7 @@ public class MainController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registrationView(Model model) {
         model.addAttribute("userForm", new User());
+        model.addAttribute("message", "");
         return "registration";
     }
 
@@ -32,6 +33,7 @@ public class MainController {
         //if this list is exist (size > 0) then redirect to registration page and
         //ask user to find new unique login
         if(userRepository.findByLogin(user.getLogin()).size() != 0){
+            model.addAttribute("message", "Login already in use");
             return "registration";
         }
         userRepository.save(user);

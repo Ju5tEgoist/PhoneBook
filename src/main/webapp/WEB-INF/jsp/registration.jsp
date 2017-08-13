@@ -19,7 +19,8 @@
     <%--<link href="<c:url value="/resources/css/registration.css" />" rel="stylesheet">--%>
     <script src="<c:url value="${contextPath}/resources/js/registration.js" />"></script>
 </head>
-<body>
+<p>
+<%@include file="header.jsp" %>
 <form:form>
     <div class="container">
         <div class="row centered-form">
@@ -62,5 +63,9 @@
         </div>
     </div>
 </form:form>
+<p></p><p></p>
+<p>
+<center>${message} </center>>
+</p>
 </body>
 </html>
